@@ -13,6 +13,8 @@
 		3F3E391B1F0F00BC0094D579 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E391A1F0F00BC0094D579 /* Assets.xcassets */; };
 		3F3E391E1F0F00BC0094D579 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E391C1F0F00BC0094D579 /* LaunchScreen.storyboard */; };
 		3F3E39291F0F00BC0094D579 /* OpenWeatherDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E39281F0F00BC0094D579 /* OpenWeatherDemoTests.swift */; };
+		3F3E393A1F0F03C80094D579 /* OpenWeatherApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E39391F0F03C80094D579 /* OpenWeatherApiClient.swift */; };
+		3F3E393D1F0F03E30094D579 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E393C1F0F03E30094D579 /* WeatherService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		3F3E39241F0F00BC0094D579 /* OpenWeatherDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenWeatherDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F3E39281F0F00BC0094D579 /* OpenWeatherDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherDemoTests.swift; sourceTree = "<group>"; };
 		3F3E392A1F0F00BC0094D579 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F3E39391F0F03C80094D579 /* OpenWeatherApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherApiClient.swift; sourceTree = "<group>"; };
+		3F3E393C1F0F03E30094D579 /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,7 @@
 			children = (
 				3F3E39121F0F00BC0094D579 /* OpenWeatherDemo */,
 				3F3E39271F0F00BC0094D579 /* OpenWeatherDemoTests */,
+				3F3E39331F0F033F0094D579 /* Resources */,
 				3F3E39111F0F00BC0094D579 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,12 +82,11 @@
 		3F3E39121F0F00BC0094D579 /* OpenWeatherDemo */ = {
 			isa = PBXGroup;
 			children = (
+				3F3E39341F0F034E0094D579 /* Presentation */,
+				3F3E39351F0F03560094D579 /* Domain */,
+				3F3E39361F0F03600094D579 /* Network */,
 				3F3E39131F0F00BC0094D579 /* AppDelegate.swift */,
-				3F3E39151F0F00BC0094D579 /* ViewController.swift */,
 				3F3E39171F0F00BC0094D579 /* Main.storyboard */,
-				3F3E391A1F0F00BC0094D579 /* Assets.xcassets */,
-				3F3E391C1F0F00BC0094D579 /* LaunchScreen.storyboard */,
-				3F3E391F1F0F00BC0094D579 /* Info.plist */,
 			);
 			path = OpenWeatherDemo;
 			sourceTree = "<group>";
@@ -94,6 +98,73 @@
 				3F3E392A1F0F00BC0094D579 /* Info.plist */,
 			);
 			path = OpenWeatherDemoTests;
+			sourceTree = "<group>";
+		};
+		3F3E39331F0F033F0094D579 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3F3E391F1F0F00BC0094D579 /* Info.plist */,
+				3F3E391A1F0F00BC0094D579 /* Assets.xcassets */,
+				3F3E391C1F0F00BC0094D579 /* LaunchScreen.storyboard */,
+			);
+			name = Resources;
+			path = OpenWeatherDemo;
+			sourceTree = "<group>";
+		};
+		3F3E39341F0F034E0094D579 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				3F3E39151F0F00BC0094D579 /* ViewController.swift */,
+			);
+			name = Presentation;
+			sourceTree = "<group>";
+		};
+		3F3E39351F0F03560094D579 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				3F3E393B1F0F03D20094D579 /* Services */,
+				3F3E39371F0F039A0094D579 /* Models */,
+			);
+			name = Domain;
+			sourceTree = "<group>";
+		};
+		3F3E39361F0F03600094D579 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				3F3E39381F0F03B70094D579 /* OpenWeather */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		3F3E39371F0F039A0094D579 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		3F3E39381F0F03B70094D579 /* OpenWeather */ = {
+			isa = PBXGroup;
+			children = (
+				3F3E393E1F0F03EA0094D579 /* Models */,
+				3F3E39391F0F03C80094D579 /* OpenWeatherApiClient.swift */,
+			);
+			name = OpenWeather;
+			sourceTree = "<group>";
+		};
+		3F3E393B1F0F03D20094D579 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3F3E393C1F0F03E30094D579 /* WeatherService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		3F3E393E1F0F03EA0094D579 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,8 +272,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F3E393D1F0F03E30094D579 /* WeatherService.swift in Sources */,
 				3F3E39161F0F00BC0094D579 /* ViewController.swift in Sources */,
 				3F3E39141F0F00BC0094D579 /* AppDelegate.swift in Sources */,
+				3F3E393A1F0F03C80094D579 /* OpenWeatherApiClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
