@@ -9,6 +9,8 @@
 import UIKit
 import Foundation
 
+let citiesKey = "CitiesKey"
+
 class CitiesViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -30,12 +32,6 @@ class CitiesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        defaults.set(["Atlanta"], forKey: "citiesKey")
-//        defaults.synchronize()
-//        if let cities = defaults.array(forKey: "citiesKey") {
-//            Logger.debug("cities: \(cities)")
-//        }
-//        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,7 +39,7 @@ class CitiesViewController: UIViewController {
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         
-        if let cities = defaults.array(forKey: "citiesKey") as? [String] {
+        if let cities = defaults.array(forKey: citiesKey) as? [String] {
             weatherService.currentForecasts(inEach: cities, onForecastUpdated: { [weak self] (city, condition, error) in
                 guard error == nil else {
                     Logger.error("error fetching forecast: \(error!)")

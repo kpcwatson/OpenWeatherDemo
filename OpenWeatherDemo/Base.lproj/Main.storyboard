@@ -146,12 +146,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZe-sU-32t" customClass="RoundedButton" customModule="OpenWeatherDemo" customModuleProvider="target">
-                                            <rect key="frame" x="337" y="10" width="30" height="30"/>
+                                            <rect key="frame" x="253" y="11" width="114" height="28"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <state key="normal" title="+"/>
+                                            <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                            <state key="normal" title="+ Add Location"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="15"/>
+                                                    <real key="value" value="6"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                     <real key="value" value="1"/>
@@ -226,20 +227,78 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LWJ-9N-va1">
-                                <rect key="frame" x="67" y="269" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LWJ-9N-va1">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="PJG-sO-kco" id="ipY-k5-0rS"/>
+                                    <outletCollection property="gestureRecognizers" destination="DjL-TA-RiN" appends="YES" id="hNF-Uz-BGV"/>
                                 </connections>
                             </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q4C-3M-CHH" customClass="RoundedView" customModule="OpenWeatherDemo" customModuleProvider="target">
+                                <rect key="frame" x="37" y="25" width="300.5" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap in the Map Area to Add a Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6e-ff-E5O" customClass="RoundedLabel" customModule="OpenWeatherDemo" customModuleProvider="target">
+                                        <rect key="frame" x="5" y="5" width="290.5" height="21"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="m6e-ff-E5O" firstAttribute="top" secondItem="Q4C-3M-CHH" secondAttribute="top" constant="5" id="GWe-ID-Qhv"/>
+                                    <constraint firstAttribute="trailing" secondItem="m6e-ff-E5O" secondAttribute="trailing" constant="5" id="Jz9-TG-oYt"/>
+                                    <constraint firstAttribute="bottom" secondItem="m6e-ff-E5O" secondAttribute="bottom" constant="5" id="d3B-Pk-L5b"/>
+                                    <constraint firstItem="m6e-ff-E5O" firstAttribute="leading" secondItem="Q4C-3M-CHH" secondAttribute="leading" constant="5" id="eN5-68-nso"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LWJ-9N-va1" firstAttribute="top" secondItem="XQD-ms-rx0" secondAttribute="bottom" id="Fzl-5w-ZZ3"/>
+                            <constraint firstItem="NmM-i6-x8u" firstAttribute="top" secondItem="LWJ-9N-va1" secondAttribute="bottom" id="StJ-W8-sjQ"/>
+                            <constraint firstItem="LWJ-9N-va1" firstAttribute="leading" secondItem="s3o-Et-b5W" secondAttribute="leading" id="mgP-gG-fgb"/>
+                            <constraint firstItem="Q4C-3M-CHH" firstAttribute="centerX" secondItem="s3o-Et-b5W" secondAttribute="centerX" id="pMR-qo-hLE"/>
+                            <constraint firstAttribute="trailing" secondItem="LWJ-9N-va1" secondAttribute="trailing" id="pjf-EQ-nBL"/>
+                            <constraint firstItem="Q4C-3M-CHH" firstAttribute="top" secondItem="XQD-ms-rx0" secondAttribute="bottom" constant="5" id="pzL-Db-LVz"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="LWJ-9N-va1" id="Ugy-Aj-TNd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Riw-dr-J0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="DjL-TA-RiN">
+                    <connections>
+                        <action selector="dropPin:" destination="PJG-sO-kco" id="l9c-rR-MlO"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1377" y="-224"/>
+            <point key="canvasLocation" x="1376.8" y="-224.4377811094453"/>
         </scene>
     </scenes>
     <resources>
