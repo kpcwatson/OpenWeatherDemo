@@ -101,19 +101,24 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" image="01d" translatesAutoresizingMaskIntoConstraints="NO" id="BTa-FU-d9d">
-                                                    <rect key="frame" x="284" y="4" width="32" height="32"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="32" id="Jw0-dh-KN9"/>
-                                                        <constraint firstAttribute="width" constant="32" id="SOx-mE-rLf"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="89°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqh-lQ-Jtk">
-                                                    <rect key="frame" x="316" y="11" width="51" height="38.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="8rI-7N-tGv">
+                                                    <rect key="frame" x="284" y="6" width="83" height="38.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="89°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqh-lQ-Jtk">
+                                                            <rect key="frame" x="0.0" y="0.0" width="51" height="38.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" image="01d" translatesAutoresizingMaskIntoConstraints="NO" id="BTa-FU-d9d">
+                                                            <rect key="frame" x="51" y="0.0" width="32" height="32"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="32" id="Jw0-dh-KN9"/>
+                                                                <constraint firstAttribute="width" constant="32" id="SOx-mE-rLf"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pvT-q8-hVL" userLabel="bottom border">
                                                     <rect key="frame" x="12" y="49" width="357" height="1"/>
                                                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -124,15 +129,13 @@
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="8rI-7N-tGv" firstAttribute="centerY" secondItem="5cD-Yg-h13" secondAttribute="centerY" id="Drm-nS-hWr"/>
                                             <constraint firstAttribute="trailing" secondItem="pvT-q8-hVL" secondAttribute="trailing" constant="6" id="Gro-hw-KBr"/>
-                                            <constraint firstItem="BTa-FU-d9d" firstAttribute="centerY" secondItem="5cD-Yg-h13" secondAttribute="centerY" constant="-5" id="IB4-Au-TCn"/>
-                                            <constraint firstItem="Fqh-lQ-Jtk" firstAttribute="leading" secondItem="BTa-FU-d9d" secondAttribute="trailing" id="KkT-dY-snC"/>
                                             <constraint firstItem="pvT-q8-hVL" firstAttribute="leading" secondItem="5cD-Yg-h13" secondAttribute="leading" constant="12" id="RnP-h0-No9"/>
-                                            <constraint firstItem="Fqh-lQ-Jtk" firstAttribute="centerY" secondItem="5cD-Yg-h13" secondAttribute="centerY" constant="5" id="VQD-9b-vBe"/>
+                                            <constraint firstAttribute="trailing" secondItem="8rI-7N-tGv" secondAttribute="trailing" constant="8" id="Sle-iq-RIs"/>
                                             <constraint firstItem="cXN-IO-62y" firstAttribute="leading" secondItem="5cD-Yg-h13" secondAttribute="leading" constant="12" id="czy-ot-9yg"/>
                                             <constraint firstItem="cXN-IO-62y" firstAttribute="centerY" secondItem="5cD-Yg-h13" secondAttribute="centerY" id="qi7-jw-5Zp"/>
                                             <constraint firstAttribute="bottom" secondItem="pvT-q8-hVL" secondAttribute="bottom" id="tr4-l2-hyo"/>
-                                            <constraint firstAttribute="trailing" secondItem="Fqh-lQ-Jtk" secondAttribute="trailing" constant="8" id="waK-Vv-ipo"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="cityName" destination="cXN-IO-62y" id="GrW-I4-Xx0"/>
@@ -185,7 +188,7 @@
                             <constraint firstItem="aHP-EI-Jf8" firstAttribute="trailing" secondItem="sbf-P5-C0C" secondAttribute="trailing" id="mGJ-K5-ulv"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="Cmb-qs-rMC"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" id="Cmb-qs-rMC"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="aHP-EI-Jf8" id="lbK-Rv-DmX"/>
@@ -208,7 +211,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Help" id="Ro3-rL-rF4"/>
+                    <tabBarItem key="tabBarItem" title="Help" image="help" id="Ro3-rL-rF4"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A9T-Tm-dZl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -303,5 +306,7 @@
     </scenes>
     <resources>
         <image name="01d" width="144" height="144"/>
+        <image name="help" width="24" height="24"/>
+        <image name="home" width="24" height="24"/>
     </resources>
 </document>
