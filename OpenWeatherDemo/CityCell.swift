@@ -10,5 +10,7 @@ import UIKit
 import Foundation
 
 class CityCell: UICollectionViewCell {
-    
+    @IBOutlet weak var cityName: UILabel!
+    @IBOutlet weak var conditionImageView: UIImageView!
+    @IBOutlet weak var currentTemperature: UILabel!
 }

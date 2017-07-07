@@ -17,15 +17,24 @@ class CitiesViewController: UIViewController {
 
 extension CitiesViewController: UICollectionViewDataSource {
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
-
     
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CityCell", for: indexPath)
+        guard let cityCell = cell as? CityCell else {
+            fatalError("Expected CityCell")
+        }
+        
+//        cityCell.
+        return cityCell
+    }
+
 }
 
 extension CitiesViewController: UICollectionViewDelegateFlowLayout {
