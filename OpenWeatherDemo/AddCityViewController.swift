@@ -10,17 +10,21 @@ import UIKit
 import Foundation
 import MapKit
 
+protocol AddCityViewControllerDelegate: class {
+    func addCityViewController(_ viewController: AddCityViewController, didAdd city: String)
+}
+
 class AddCityViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
+    
+    weak var delegate: AddCityViewControllerDelegate?
     
     private let locationManager = CLLocationManager()
     private let geocoder = CLGeocoder()
     fileprivate let pin = MKPointAnnotation()
     
-    private let store = CitiesPersistentStore()
-    private var locality: String?
-    private var storedCities: [String]!
+    private var city: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,14 +40,6 @@ class AddCityViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        if let locality = locality {
-            store.add(city: locality)
-        }
     }
     
     @IBAction func dropPin(_ sender: UITapGestureRecognizer) {
@@ -62,13 +58,25 @@ class AddCityViewController: UIViewController {
                     return
                 }
                 
-                strongSelf.locality = locality
+                strongSelf.city = locality
                 
                 strongSelf.mapView.removeAnnotation(strongSelf.pin)
                 strongSelf.pin.coordinate = coordinate
                 strongSelf.mapView.addAnnotation(strongSelf.pin)
             }
         }
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        
+        guard parent == nil, // parent is nil when going back
+            let city = city
+            else {
+                return
+        }
+        
+        delegate?.addCityViewController(self, didAdd: city)
     }
     
     private func setupLocationManager() {

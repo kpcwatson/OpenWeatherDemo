@@ -16,14 +16,15 @@ class CitiesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var currentConditionsForCity = [String: CurrentCondition]()
-    var sortedCityKeys: [String] {
-        return self.currentConditionsForCity.keys.sorted()
-    }
     
     fileprivate let store = CitiesPersistentStore()
     fileprivate var weatherService: WeatherService!
     
     fileprivate var selectedIndexPath: IndexPath?
+    
+    fileprivate var sortedCities: [String] {
+        return store.allCities.sorted()
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,24 +44,36 @@ class CitiesViewController: UIViewController {
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         
-        weatherService.currentForecasts(inEach: store.allCities, onForecastUpdated: { [weak self] (city, condition, error) in
+        tableView.beginUpdates()
+        var inserts = [IndexPath]()
+        weatherService.currentForecasts(inEach: sortedCities, onForecastUpdated: { [weak self] (city, condition, error) in
             guard error == nil else {
                 Logger.error("error fetching forecast: \(error!)")
                 return
             }
             
+            guard let indexPath = self?.indexPath(for: city) else {
+                self?.currentConditionsForCity[city] = condition
+                self?.tableView.reloadData()
+                return
+            }
+            
+            if self?.currentConditionsForCity.keys.contains(city) == false {
+                inserts.append(indexPath)
+            }
+
             self?.currentConditionsForCity[city] = condition
         }, onComplete: { [weak self] in
-            self?.tableView.reloadData()
+            self?.tableView.insertRows(at: inserts, with: .automatic)
+            self?.tableView.endUpdates()
         })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if let detailsViewController = segue.destination as? CityDetailsViewController {
-            
             guard let selectedIndexPath = selectedIndexPath,
-                let city = cityForIndexPath(selectedIndexPath),
+                let city = city(for: selectedIndexPath),
                 let conditions = currentConditionsForCity[city]
                 else {
                     fatalError("required info is missing for presenting details view controller")
@@ -68,14 +81,24 @@ class CitiesViewController: UIViewController {
             
             detailsViewController.city = city
             detailsViewController.currentConditions = conditions
+            
+        } else if let addCityViewController = segue.destination as? AddCityViewController {
+            addCityViewController.delegate = self
         }
     }
     
-    fileprivate func cityForIndexPath(_ indexPath: IndexPath) -> String? {
-        guard sortedCityKeys.count > indexPath.item else {
+    fileprivate func city(for indexPath: IndexPath) -> String? {
+        guard sortedCities.count > indexPath.item else {
             return nil
         }
-        return sortedCityKeys[indexPath.item]
+        return sortedCities[indexPath.item]
+    }
+    
+    fileprivate func indexPath(for city: String) -> IndexPath? {
+        guard let index = sortedCities.index(of: city) else {
+            return nil
+        }
+        return IndexPath(row: index, section: 0)
     }
 }
 
@@ -104,7 +127,7 @@ extension CitiesViewController: UITableViewDataSource {
             fatalError("Expected CityCell")
         }
         
-        guard let city = cityForIndexPath(indexPath) else {
+        guard let city = city(for: indexPath) else {
             fatalError("indexPath out of bounds")
         }
         
@@ -119,12 +142,19 @@ extension CitiesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete,
-            let city = cityForIndexPath(indexPath) {
+            let city = city(for: indexPath) {
             
-            // remove from defaults
             store.remove(city: city)
             currentConditionsForCity.removeValue(forKey: city)
             tableView.reloadData()
         }
+    }
+}
+
+extension CitiesViewController: AddCityViewControllerDelegate {
+    
+    func addCityViewController(_ viewController: AddCityViewController, didAdd city: String) {
+        Logger.debug("added \(city)")
+        store.add(city: city)
     }
 }
