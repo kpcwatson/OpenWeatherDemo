@@ -11,6 +11,7 @@
 		3F0882B71F0F7C2C00F1ADCA /* RoundedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0882B61F0F7C2C00F1ADCA /* RoundedLabel.swift */; };
 		3F0882B91F0F88BB00F1ADCA /* CityConditionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0882B81F0F88BB00F1ADCA /* CityConditionDetails.swift */; };
 		3F0882BC1F0F8CB800F1ADCA /* CityDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0882BB1F0F8CB800F1ADCA /* CityDetailsView.swift */; };
+		3F0882BF1F0F956900F1ADCA /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 3F0882BE1F0F956900F1ADCA /* help.html */; };
 		3F3E39141F0F00BC0094D579 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E39131F0F00BC0094D579 /* AppDelegate.swift */; };
 		3F3E39191F0F00BC0094D579 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E39171F0F00BC0094D579 /* Main.storyboard */; };
 		3F3E391B1F0F00BC0094D579 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E391A1F0F00BC0094D579 /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		3F0882B61F0F7C2C00F1ADCA /* RoundedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedLabel.swift; sourceTree = "<group>"; };
 		3F0882B81F0F88BB00F1ADCA /* CityConditionDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityConditionDetails.swift; sourceTree = "<group>"; };
 		3F0882BB1F0F8CB800F1ADCA /* CityDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityDetailsView.swift; sourceTree = "<group>"; };
+		3F0882BE1F0F956900F1ADCA /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
 		3F3E39101F0F00BC0094D579 /* OpenWeatherDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWeatherDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F3E39131F0F00BC0094D579 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F3E39181F0F00BC0094D579 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				3F3E391A1F0F00BC0094D579 /* Assets.xcassets */,
 				3F3E391C1F0F00BC0094D579 /* LaunchScreen.storyboard */,
 				3FB8AE361F0F1FF10096AE31 /* config.json */,
+				3F0882BE1F0F956900F1ADCA /* help.html */,
 			);
 			name = Resources;
 			path = OpenWeatherDemo;
@@ -427,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F3E391E1F0F00BC0094D579 /* LaunchScreen.storyboard in Resources */,
+				3F0882BF1F0F956900F1ADCA /* help.html in Resources */,
 				3FB8AE371F0F1FF10096AE31 /* config.json in Resources */,
 				3F3E391B1F0F00BC0094D579 /* Assets.xcassets in Resources */,
 				3F3E39191F0F00BC0094D579 /* Main.storyboard in Resources */,

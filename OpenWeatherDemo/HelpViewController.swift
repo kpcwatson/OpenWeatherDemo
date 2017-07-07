@@ -11,4 +11,12 @@ import Foundation
 
 class HelpViewController: UIViewController {
     
+    @IBOutlet weak var webview: UIWebView!
+    
+    override func viewDidLoad() {
+        guard let url = Bundle.main.url(forResource: "help", withExtension: "html") else {
+            return
+        }
+        webview.loadRequest(URLRequest(url: url))
+    }
 }
