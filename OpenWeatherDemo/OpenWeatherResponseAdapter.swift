@@ -12,6 +12,7 @@ class OpenWeatherResponseAdapter {
     
     func toCurrentCondition(_ owCondition: OpenWeatherCondition, in city: String? = nil) -> CurrentCondition {
         return CurrentCondition(iconName: owCondition.iconName,
+                                description: owCondition.description,
                                 temperature: temperatures(from: owCondition),
                                 city: city ?? owCondition.city,
                                 humidity: owCondition.humidity,

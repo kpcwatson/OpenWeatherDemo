@@ -17,9 +17,7 @@ class CityCell: UICollectionViewCell {
     var representedModel: BriefCityCondition? {
         didSet {
             guard let model = representedModel else {
-                cityName.text = nil
-                conditionImageView.image = nil
-                currentTemperature.text = nil
+                resetUiComponents()
                 return
             }
             
@@ -32,8 +30,21 @@ class CityCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        resetUiComponents()
+        
         self.translatesAutoresizingMaskIntoConstraints = false
 //        self.contentView.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        resetUiComponents()
+    }
+    
+    private func resetUiComponents() {
+        cityName.text = nil
+        conditionImageView.image = nil
+        currentTemperature.text = nil
+    }
 }

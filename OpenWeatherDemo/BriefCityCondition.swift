@@ -20,6 +20,6 @@ struct BriefCityCondition {
         
         city = condition.city
         iconName = condition.iconName
-        temperature = Int(condition.temperature.current)
+        temperature = condition.temperature.current
     }
 }

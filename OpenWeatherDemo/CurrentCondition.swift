@@ -9,9 +9,9 @@
 import Foundation
 
 struct Temperatures {
-    let current: Double
-    let min: Double?
-    let max: Double?
+    let current: Int
+    let min: Int?
+    let max: Int?
 }
 
 struct Wind {
@@ -52,6 +52,7 @@ struct Wind {
 
 struct CurrentCondition {
     let iconName: String
+    let description: String
     let temperature: Temperatures
     let city: String
     let humidity: Int?
