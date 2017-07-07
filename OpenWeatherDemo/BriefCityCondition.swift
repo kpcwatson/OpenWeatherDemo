@@ -13,7 +13,11 @@ struct BriefCityCondition {
     let iconName: String
     let temperature: Int
     
-    init(condition: CurrentCondition) {
+    init?(condition: CurrentCondition?) {
+        guard let condition = condition else {
+            return nil
+        }
+        
         city = condition.city
         iconName = condition.iconName
         temperature = Int(condition.temperature.current)

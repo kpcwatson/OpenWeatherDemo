@@ -8,7 +8,8 @@
 
 import Foundation
 
-typealias ForecastUpdateClosure = (CurrentCondition?, Error?) -> Void
+typealias CityForecastUpdateClosure = (String, CurrentCondition?, Error?) -> Void
+typealias CoordinateForecastUpdateClosure = (Coordinate, CurrentCondition?, Error?) -> Void
 typealias CompletionHandler = () -> Void
 
 enum WeatherServiceError: Error {
@@ -26,8 +27,10 @@ class WeatherService {
     
     // FIXME: remove duplicated code
     
+    // FIXME: add content repository with expiry
+    
     func currentForecasts(inEach cities: [String],
-                          onForecastUpdated forecastUpdated: @escaping ForecastUpdateClosure,
+                          onForecastUpdated forecastUpdated: @escaping CityForecastUpdateClosure,
                           onComplete complete: @escaping CompletionHandler) {
         
         let group = DispatchGroup()
@@ -37,32 +40,31 @@ class WeatherService {
             
             weatherApiClient.currentConditions(in: city) { (owCondition, error) in
                 guard error == nil else {
-                    forecastUpdated(nil, error!)
+                    forecastUpdated(city, nil, error!)
                     group.leave()
                     return
                 }
                 
                 guard let owCondition = owCondition else {
-                    forecastUpdated(nil, WeatherServiceError.OpenWeatherConditionIsNil)
+                    forecastUpdated(city, nil, WeatherServiceError.OpenWeatherConditionIsNil)
                     group.leave()
                     return
                 }
 
                 let responseAdapter = OpenWeatherResponseAdapter()
                 let condition = responseAdapter.toCurrentCondition(owCondition, in: city)
-                forecastUpdated(condition, nil)
+                forecastUpdated(city, condition, nil)
                 group.leave()
             }
         }
         
         group.notify(queue: DispatchQueue.main) {
-            Logger.debug("group notified")
             complete()
         }
     }
     
     func currentForecasts(atEach coordinates: [Coordinate],
-                          onForecastUpdated forecastUpdated: @escaping ForecastUpdateClosure,
+                          onForecastUpdated forecastUpdated: @escaping CoordinateForecastUpdateClosure,
                           onComplete complete: @escaping CompletionHandler) {
         
         let group = DispatchGroup()
@@ -72,26 +74,25 @@ class WeatherService {
             
             weatherApiClient.currentConditions(at: coordinate) { (owCondition, error) in
                 guard error == nil else {
-                    forecastUpdated(nil, error!)
+                    forecastUpdated(coordinate, nil, error!)
                     group.leave()
                     return
                 }
                 
                 guard let owCondition = owCondition else {
-                    forecastUpdated(nil, WeatherServiceError.OpenWeatherConditionIsNil)
+                    forecastUpdated(coordinate, nil, WeatherServiceError.OpenWeatherConditionIsNil)
                     group.leave()
                     return
                 }
                 
                 let responseAdapter = OpenWeatherResponseAdapter()
                 let condition = responseAdapter.toCurrentCondition(owCondition)
-                forecastUpdated(condition, nil)
+                forecastUpdated(coordinate, condition, nil)
                 group.leave()
             }
         }
         
         group.notify(queue: DispatchQueue.main) {
-            Logger.debug("group notified")
             complete()
         }
     }

@@ -28,4 +28,12 @@ class CityCell: UICollectionViewCell {
             conditionImageView.image = UIImage(named: model.iconName)
         }
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
+//        self.contentView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
 }

@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -45,7 +44,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QXe-sa-YaV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1270" y="-569"/>
+            <point key="canvasLocation" x="1377" y="-894"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zQB-Hx-H9G">
@@ -85,7 +84,7 @@
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KTK-5D-3lE">
                                     <size key="itemSize" width="375" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="50" height="50"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
@@ -103,27 +102,37 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" image="01d" translatesAutoresizingMaskIntoConstraints="NO" id="BTa-FU-d9d">
-                                                    <rect key="frame" x="276" y="4" width="32" height="32"/>
+                                                    <rect key="frame" x="284" y="4" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="Jw0-dh-KN9"/>
                                                         <constraint firstAttribute="width" constant="32" id="SOx-mE-rLf"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="89°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqh-lQ-Jtk">
-                                                    <rect key="frame" x="308" y="11" width="51" height="38.5"/>
+                                                    <rect key="frame" x="316" y="11" width="51" height="38.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pvT-q8-hVL" userLabel="bottom border">
+                                                    <rect key="frame" x="12" y="49" width="357" height="1"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="Tb9-FI-BGJ"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="pvT-q8-hVL" secondAttribute="trailing" constant="6" id="Gro-hw-KBr"/>
                                             <constraint firstItem="BTa-FU-d9d" firstAttribute="centerY" secondItem="5cD-Yg-h13" secondAttribute="centerY" constant="-5" id="IB4-Au-TCn"/>
                                             <constraint firstItem="Fqh-lQ-Jtk" firstAttribute="leading" secondItem="BTa-FU-d9d" secondAttribute="trailing" id="KkT-dY-snC"/>
+                                            <constraint firstItem="pvT-q8-hVL" firstAttribute="leading" secondItem="5cD-Yg-h13" secondAttribute="leading" constant="12" id="RnP-h0-No9"/>
                                             <constraint firstItem="Fqh-lQ-Jtk" firstAttribute="centerY" secondItem="5cD-Yg-h13" secondAttribute="centerY" constant="5" id="VQD-9b-vBe"/>
                                             <constraint firstItem="cXN-IO-62y" firstAttribute="leading" secondItem="5cD-Yg-h13" secondAttribute="leading" constant="12" id="czy-ot-9yg"/>
                                             <constraint firstItem="cXN-IO-62y" firstAttribute="centerY" secondItem="5cD-Yg-h13" secondAttribute="centerY" id="qi7-jw-5Zp"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="Fqh-lQ-Jtk" secondAttribute="trailing" constant="8" id="waK-Vv-ipo"/>
+                                            <constraint firstAttribute="bottom" secondItem="pvT-q8-hVL" secondAttribute="bottom" id="tr4-l2-hyo"/>
+                                            <constraint firstAttribute="trailing" secondItem="Fqh-lQ-Jtk" secondAttribute="trailing" constant="8" id="waK-Vv-ipo"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="cityName" destination="cXN-IO-62y" id="GrW-I4-Xx0"/>
@@ -132,6 +141,35 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CitiesFooter" id="VgL-i8-xTm">
+                                    <rect key="frame" x="0.0" y="50" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZe-sU-32t" customClass="RoundedButton" customModule="OpenWeatherDemo" customModuleProvider="target">
+                                            <rect key="frame" x="337" y="10" width="30" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <state key="normal" title="+"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="15"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <segue destination="PJG-sO-kco" kind="show" id="aQc-U0-owJ"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="vZe-sU-32t" secondAttribute="trailing" constant="8" id="E4Z-62-FNY"/>
+                                        <constraint firstItem="vZe-sU-32t" firstAttribute="centerY" secondItem="VgL-i8-xTm" secondAttribute="centerY" id="Xhr-lp-kO2"/>
+                                    </constraints>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="ZeB-pW-c9H" id="swy-zl-70C"/>
                                     <outlet property="delegate" destination="ZeB-pW-c9H" id="hYF-DT-fnz"/>
@@ -175,6 +213,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A9T-Tm-dZl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="465" y="108"/>
+        </scene>
+        <!--Add City View Controller-->
+        <scene sceneID="gKf-BB-MNi">
+            <objects>
+                <viewController id="PJG-sO-kco" customClass="AddCityViewController" customModule="OpenWeatherDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XQD-ms-rx0"/>
+                        <viewControllerLayoutGuide type="bottom" id="NmM-i6-x8u"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="s3o-Et-b5W">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LWJ-9N-va1">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="PJG-sO-kco" id="ipY-k5-0rS"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Riw-dr-J0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1377" y="-224"/>
         </scene>
     </scenes>
     <resources>

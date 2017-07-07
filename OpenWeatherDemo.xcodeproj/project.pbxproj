@@ -32,6 +32,8 @@
 		3FB8AE441F0F25E30096AE31 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8AE431F0F25E30096AE31 /* Coordinate.swift */; };
 		3FB8AE461F0F31040096AE31 /* BriefCityCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8AE451F0F31040096AE31 /* BriefCityCondition.swift */; };
 		3FB8AE4A1F0F39F30096AE31 /* OpenWeatherResponseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8AE491F0F39F30096AE31 /* OpenWeatherResponseAdapter.swift */; };
+		3FB8AE4C1F0F515B0096AE31 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8AE4B1F0F515B0096AE31 /* RoundedButton.swift */; };
+		3FB8AE4E1F0F56620096AE31 /* AddCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8AE4D1F0F56620096AE31 /* AddCityViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 		3FB8AE431F0F25E30096AE31 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		3FB8AE451F0F31040096AE31 /* BriefCityCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BriefCityCondition.swift; sourceTree = "<group>"; };
 		3FB8AE491F0F39F30096AE31 /* OpenWeatherResponseAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherResponseAdapter.swift; sourceTree = "<group>"; };
+		3FB8AE4B1F0F515B0096AE31 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		3FB8AE4D1F0F56620096AE31 /* AddCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,7 @@
 				3F3E39411F0F065B0094D579 /* Cities */,
 				3F3E39441F0F08FC0094D579 /* City Details */,
 				3F3E39471F0F09280094D579 /* Help */,
+				3FB8AE4F1F0F56670096AE31 /* Add City */,
 			);
 			name = Presentation;
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 		3FB8AE2E1F0F1D3F0096AE31 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				3FB8AE501F0F56720096AE31 /* Presentation */,
 				3FB8AE351F0F1FBE0096AE31 /* Network */,
 				3FB8AE2F1F0F1D630096AE31 /* NSDictionary+ValueInference.swift */,
 				3FB8AE411F0F23D40096AE31 /* Logger.swift */,
@@ -280,6 +286,22 @@
 				3FB8AE451F0F31040096AE31 /* BriefCityCondition.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		3FB8AE4F1F0F56670096AE31 /* Add City */ = {
+			isa = PBXGroup;
+			children = (
+				3FB8AE4D1F0F56620096AE31 /* AddCityViewController.swift */,
+			);
+			name = "Add City";
+			sourceTree = "<group>";
+		};
+		3FB8AE501F0F56720096AE31 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				3FB8AE4B1F0F515B0096AE31 /* RoundedButton.swift */,
+			);
+			name = Presentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,8 +414,10 @@
 				3FB8AE461F0F31040096AE31 /* BriefCityCondition.swift in Sources */,
 				3FB8AE3B1F0F204B0096AE31 /* Mappable.swift in Sources */,
 				3FB8AE3E1F0F20870096AE31 /* Config.swift in Sources */,
+				3FB8AE4C1F0F515B0096AE31 /* RoundedButton.swift in Sources */,
 				3FB8AE391F0F20340096AE31 /* BaseApiClient.swift in Sources */,
 				3F3E393D1F0F03E30094D579 /* WeatherService.swift in Sources */,
+				3FB8AE4E1F0F56620096AE31 /* AddCityViewController.swift in Sources */,
 				3FB8AE441F0F25E30096AE31 /* Coordinate.swift in Sources */,
 				3F3E39461F0F09250094D579 /* HelpViewController.swift in Sources */,
 				3FB8AE2D1F0F1AB10096AE31 /* OpenWeatherCondition.swift in Sources */,

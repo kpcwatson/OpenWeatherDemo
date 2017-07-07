@@ -13,6 +13,50 @@ class CitiesViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var currentConditionsForCity = [String: CurrentCondition]()
+    var sortedCityKeys: [String] {
+        return self.currentConditionsForCity.keys.sorted()
+    }
+    
+    private let defaults = UserDefaults.standard
+    private var weatherService: WeatherService!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        weatherService = WeatherService()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+//        defaults.set(["Atlanta"], forKey: "citiesKey")
+//        defaults.synchronize()
+//        if let cities = defaults.array(forKey: "citiesKey") {
+//            Logger.debug("cities: \(cities)")
+//        }
+//        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        if let cities = defaults.array(forKey: "citiesKey") as? [String] {
+            weatherService.currentForecasts(inEach: cities, onForecastUpdated: { [weak self] (city, condition, error) in
+                guard error == nil else {
+                    Logger.error("error fetching forecast: \(error!)")
+                    return
+                }
+                
+                self?.currentConditionsForCity[city] = condition
+            }, onComplete: { [weak self] in
+                self?.collectionView.reloadData()
+            })
+        }
+        
+    }
 }
 
 extension CitiesViewController: UICollectionViewDataSource {
@@ -22,7 +66,7 @@ extension CitiesViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return currentConditionsForCity.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -31,12 +75,24 @@ extension CitiesViewController: UICollectionViewDataSource {
             fatalError("Expected CityCell")
         }
         
-//        cityCell.
+        let city = sortedCityKeys[indexPath.item]
+        cityCell.representedModel = BriefCityCondition(condition: currentConditionsForCity[city])
+        
+//        cityCell.widthAnchor
+//            .constraint(equalTo: collectionView.widthAnchor, multiplier: 0)
+//            .isActive = true
         return cityCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CitiesFooter", for: indexPath)
     }
 
 }
 
 extension CitiesViewController: UICollectionViewDelegateFlowLayout {
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 50.0)
+    }
 }
