@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class CityCell: UICollectionViewCell {
+class CityCell: UITableViewCell {
     @IBOutlet weak var cityName: UILabel!
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var currentTemperature: UILabel!
@@ -31,9 +31,6 @@ class CityCell: UICollectionViewCell {
         super.awakeFromNib()
         
         resetUiComponents()
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-//        self.contentView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     override func prepareForReuse() {

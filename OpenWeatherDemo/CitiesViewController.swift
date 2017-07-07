@@ -15,7 +15,7 @@ let citiesKey = "CitiesKey"
 
 class CitiesViewController: UIViewController {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
     
     var currentConditionsForCity = [String: CurrentCondition]()
     var sortedCityKeys: [String] {
@@ -36,6 +36,8 @@ class CitiesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,7 +54,7 @@ class CitiesViewController: UIViewController {
                 
                 self?.currentConditionsForCity[city] = condition
             }, onComplete: { [weak self] in
-                self?.collectionView.reloadData()
+                self?.tableView.reloadData()
             })
         }
     }
@@ -81,18 +83,27 @@ class CitiesViewController: UIViewController {
     }
 }
 
-extension CitiesViewController: UICollectionViewDataSource {
+extension CitiesViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedIndexPath = indexPath
+        performSegue(withIdentifier: "ShowForecastDetails", sender: self)
+    }
+}
 
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+extension CitiesViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentConditionsForCity.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CityCell", for: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath)
         guard let cityCell = cell as? CityCell else {
             fatalError("Expected CityCell")
         }
@@ -100,28 +111,9 @@ extension CitiesViewController: UICollectionViewDataSource {
         guard let city = cityForIndexPath(indexPath) else {
             fatalError("indexPath out of bounds")
         }
+        
         cityCell.representedModel = BriefCityCondition(condition: currentConditionsForCity[city])
         
-//        cityCell.widthAnchor
-//            .constraint(equalTo: collectionView.widthAnchor, multiplier: 0)
-//            .isActive = true
         return cityCell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CitiesFooter", for: indexPath)
-    }
-
-}
-
-extension CitiesViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 50.0)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedIndexPath = indexPath
-        performSegue(withIdentifier: "ShowForecastDetails", sender: self)
     }
 }
