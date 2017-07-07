@@ -26,6 +26,7 @@ class AddCityViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationItem.title = "Add Location"
         
         storedCities = defaults.array(forKey: citiesKey) as? [String] ?? []
         

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3F0882B51F0F6B5F00F1ADCA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0882B41F0F6B5F00F1ADCA /* MapKit.framework */; };
 		3F0882B71F0F7C2C00F1ADCA /* RoundedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0882B61F0F7C2C00F1ADCA /* RoundedLabel.swift */; };
+		3F0882B91F0F88BB00F1ADCA /* CityConditionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0882B81F0F88BB00F1ADCA /* CityConditionDetails.swift */; };
 		3F3E39141F0F00BC0094D579 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E39131F0F00BC0094D579 /* AppDelegate.swift */; };
 		3F3E39191F0F00BC0094D579 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E39171F0F00BC0094D579 /* Main.storyboard */; };
 		3F3E391B1F0F00BC0094D579 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E391A1F0F00BC0094D579 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		3F0882B41F0F6B5F00F1ADCA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3F0882B61F0F7C2C00F1ADCA /* RoundedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedLabel.swift; sourceTree = "<group>"; };
+		3F0882B81F0F88BB00F1ADCA /* CityConditionDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityConditionDetails.swift; sourceTree = "<group>"; };
 		3F3E39101F0F00BC0094D579 /* OpenWeatherDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWeatherDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F3E39131F0F00BC0094D579 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F3E39181F0F00BC0094D579 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				3F3E39421F0F08F70094D579 /* CityDetailsViewController.swift */,
+				3F0882B81F0F88BB00F1ADCA /* CityConditionDetails.swift */,
 			);
 			name = "City Details";
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				3FB8AE341F0F1FBA0096AE31 /* URITemplate.swift in Sources */,
 				3FB8AE461F0F31040096AE31 /* BriefCityCondition.swift in Sources */,
 				3FB8AE3B1F0F204B0096AE31 /* Mappable.swift in Sources */,
+				3F0882B91F0F88BB00F1ADCA /* CityConditionDetails.swift in Sources */,
 				3FB8AE3E1F0F20870096AE31 /* Config.swift in Sources */,
 				3FB8AE4C1F0F515B0096AE31 /* RoundedButton.swift in Sources */,
 				3FB8AE391F0F20340096AE31 /* BaseApiClient.swift in Sources */,

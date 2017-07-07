@@ -11,6 +11,8 @@ import Foundation
 
 let citiesKey = "CitiesKey"
 
+// FIXME: better error handling when recoverable
+
 class CitiesViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -22,6 +24,8 @@ class CitiesViewController: UIViewController {
     
     private let defaults = UserDefaults.standard
     private var weatherService: WeatherService!
+    
+    fileprivate var selectedIndexPath: IndexPath?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -51,7 +55,29 @@ class CitiesViewController: UIViewController {
                 self?.collectionView.reloadData()
             })
         }
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if let detailsViewController = segue.destination as? CityDetailsViewController {
+            
+            guard let selectedIndexPath = selectedIndexPath,
+                let city = cityForIndexPath(selectedIndexPath),
+                let conditions = currentConditionsForCity[city]
+                else {
+                    fatalError("required info is missing for presenting details view controller")
+            }
+            
+            detailsViewController.city = city
+            detailsViewController.currentConditions = conditions
+        }
+    }
+    
+    fileprivate func cityForIndexPath(_ indexPath: IndexPath) -> String? {
+        guard sortedCityKeys.count > indexPath.item else {
+            return nil
+        }
+        return sortedCityKeys[indexPath.item]
     }
 }
 
@@ -71,7 +97,9 @@ extension CitiesViewController: UICollectionViewDataSource {
             fatalError("Expected CityCell")
         }
         
-        let city = sortedCityKeys[indexPath.item]
+        guard let city = cityForIndexPath(indexPath) else {
+            fatalError("indexPath out of bounds")
+        }
         cityCell.representedModel = BriefCityCondition(condition: currentConditionsForCity[city])
         
 //        cityCell.widthAnchor
@@ -90,5 +118,10 @@ extension CitiesViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 50.0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndexPath = indexPath
+        performSegue(withIdentifier: "ShowForecastDetails", sender: self)
     }
 }
