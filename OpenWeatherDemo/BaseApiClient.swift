@@ -17,12 +17,12 @@ enum ApiClientError: Error {
 
 class BaseApiClient {
     
-    private let urlSession: URLSession
     private let serviceProperties: ServiceProperties
+    private let urlSession: URLSession
     
-    init(urlSession: URLSession, serviceProperties: ServiceProperties) {
-        self.urlSession = urlSession
+    required init(serviceProperties: ServiceProperties, urlSession: URLSession) {
         self.serviceProperties = serviceProperties
+        self.urlSession = urlSession
     }
     
     // callback hell-ish... would prefer RxSwift to return Observable but I am
