@@ -1,5 +1,5 @@
 //
-//  RoundedLabel.swift
+//  RoundedView.swift
 //  OpenWeatherDemo
 //
 //  Created by Kyle Watson on 7/7/17.

@@ -25,20 +25,21 @@ class AddCityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.setNavigationBarHidden(false, animated: false)
         navigationItem.title = "Add Location"
         
         storedCities = defaults.array(forKey: citiesKey) as? [String] ?? []
         
         mapView.showsUserLocation = true
         
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-        locationManager.distanceFilter = 1000.0
-        locationManager.startUpdatingLocation()
+        setupLocationManager()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -73,12 +74,19 @@ class AddCityViewController: UIViewController {
             }
         }
     }
+    
+    private func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        locationManager.distanceFilter = 1000.0
+        locationManager.startUpdatingLocation()
+    }
 }
 
 extension AddCityViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         guard let location = locations.last else {
             return
         }
