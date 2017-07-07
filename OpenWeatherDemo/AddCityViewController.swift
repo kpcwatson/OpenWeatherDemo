@@ -18,7 +18,7 @@ class AddCityViewController: UIViewController {
     private let geocoder = CLGeocoder()
     fileprivate let pin = MKPointAnnotation()
     
-    private let defaults = UserDefaults.standard
+    private let store = CitiesPersistentStore()
     private var locality: String?
     private var storedCities: [String]!
     
@@ -26,8 +26,6 @@ class AddCityViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Add Location"
-        
-        storedCities = defaults.array(forKey: citiesKey) as? [String] ?? []
         
         mapView.showsUserLocation = true
         
@@ -44,9 +42,7 @@ class AddCityViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         if let locality = locality {
-            storedCities.append(locality)
-            defaults.set(storedCities, forKey: citiesKey)
-            defaults.synchronize()
+            store.add(city: locality)
         }
     }
     

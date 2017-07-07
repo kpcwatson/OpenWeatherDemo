@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F018BBE1F1029D900720D60 /* CitiesPersistentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018BBD1F1029D900720D60 /* CitiesPersistentStore.swift */; };
 		3F0882B51F0F6B5F00F1ADCA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0882B41F0F6B5F00F1ADCA /* MapKit.framework */; };
 		3F0882B71F0F7C2C00F1ADCA /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0882B61F0F7C2C00F1ADCA /* RoundedView.swift */; };
 		3F0882B91F0F88BB00F1ADCA /* CityConditionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0882B81F0F88BB00F1ADCA /* CityConditionDetails.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F018BBD1F1029D900720D60 /* CitiesPersistentStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiesPersistentStore.swift; sourceTree = "<group>"; };
 		3F0882B41F0F6B5F00F1ADCA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3F0882B61F0F7C2C00F1ADCA /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		3F0882B81F0F88BB00F1ADCA /* CityConditionDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityConditionDetails.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				3FB8AE3C1F0F20760096AE31 /* Config */,
 				3F3E393B1F0F03D20094D579 /* Services */,
 				3F3E39371F0F039A0094D579 /* Models */,
+				3FD722FF1F10350E00680672 /* Persistence */,
 			);
 			name = Domain;
 			sourceTree = "<group>";
@@ -344,6 +347,14 @@
 			name = Presentation;
 			sourceTree = "<group>";
 		};
+		3FD722FF1F10350E00680672 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				3F018BBD1F1029D900720D60 /* CitiesPersistentStore.swift */,
+			);
+			name = Persistence;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -453,6 +464,7 @@
 			files = (
 				3FB8AE341F0F1FBA0096AE31 /* URITemplate.swift in Sources */,
 				3FB8AE461F0F31040096AE31 /* BriefCityCondition.swift in Sources */,
+				3F018BBE1F1029D900720D60 /* CitiesPersistentStore.swift in Sources */,
 				3FB8AE3B1F0F204B0096AE31 /* Mappable.swift in Sources */,
 				3F0882B91F0F88BB00F1ADCA /* CityConditionDetails.swift in Sources */,
 				3FB8AE3E1F0F20870096AE31 /* Config.swift in Sources */,

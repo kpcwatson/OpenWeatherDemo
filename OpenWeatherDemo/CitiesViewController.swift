@@ -9,8 +9,6 @@
 import UIKit
 import Foundation
 
-let citiesKey = "CitiesKey"
-
 // FIXME: better error handling when recoverable
 
 class CitiesViewController: UIViewController {
@@ -22,8 +20,8 @@ class CitiesViewController: UIViewController {
         return self.currentConditionsForCity.keys.sorted()
     }
     
-    private let defaults = UserDefaults.standard
-    private var weatherService: WeatherService!
+    fileprivate let store = CitiesPersistentStore()
+    fileprivate var weatherService: WeatherService!
     
     fileprivate var selectedIndexPath: IndexPath?
     
@@ -45,18 +43,16 @@ class CitiesViewController: UIViewController {
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         
-        if let cities = defaults.array(forKey: citiesKey) as? [String] {
-            weatherService.currentForecasts(inEach: cities, onForecastUpdated: { [weak self] (city, condition, error) in
-                guard error == nil else {
-                    Logger.error("error fetching forecast: \(error!)")
-                    return
-                }
-                
-                self?.currentConditionsForCity[city] = condition
-            }, onComplete: { [weak self] in
-                self?.tableView.reloadData()
-            })
-        }
+        weatherService.currentForecasts(inEach: store.allCities, onForecastUpdated: { [weak self] (city, condition, error) in
+            guard error == nil else {
+                Logger.error("error fetching forecast: \(error!)")
+                return
+            }
+            
+            self?.currentConditionsForCity[city] = condition
+        }, onComplete: { [weak self] in
+            self?.tableView.reloadData()
+        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -115,5 +111,20 @@ extension CitiesViewController: UITableViewDataSource {
         cityCell.representedModel = BriefCityCondition(condition: currentConditionsForCity[city])
         
         return cityCell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete,
+            let city = cityForIndexPath(indexPath) {
+            
+            // remove from defaults
+            store.remove(city: city)
+            currentConditionsForCity.removeValue(forKey: city)
+            tableView.reloadData()
+        }
     }
 }
