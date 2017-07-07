@@ -3,8 +3,7 @@
         "openWeather": {
             "host": "http://api.openweathermap.org",
             "endpoints": {
-                "current": "/data/2.5/weather?units=imperial&appid=f03c36d8645052fd0e0e021a61a27508{&q,lat,lon}",
-                "forecast": "/data/2.5/forecast?units=imperial&appid=f03c36d8645052fd0e0e021a61a27508{?q,lat,lon}"
+                "current": "/data/2.5/weather?units=imperial&appid=f03c36d8645052fd0e0e021a61a27508{&q,lat,lon}"
             }
         }
     }

@@ -10,8 +10,8 @@ import Foundation
 
 struct OpenWeatherCondition {
     let iconName: String
-//    let description: String
     let temperature: Double
+    let city: String
     let minTemperature: Double?
     let maxTemperature: Double?
     let humidity: Int?
@@ -21,16 +21,18 @@ struct OpenWeatherCondition {
 
 extension OpenWeatherCondition: Mappable {
     init?(json: NSDictionary) {
-//        guard let iconName: String = (json.value(for: "weather") as? [NSDictionary])?.first?.value(for: "icon"),
         guard let weather: [NSDictionary] = json.value(for: "weather"),
             let iconName: String = weather.first?.value(for: "icon"),
-            let temperature: Double = json.value(for: "main.temp")
+            let temperature: Double = json.value(for: "main.temp"),
+            let city: String = json.value(for: "name")
             else {
                 return nil
         }
         
         self.iconName = iconName
         self.temperature = temperature
+        self.city = city
+//        self.city = json.value(for: "name")
         self.minTemperature = json.value(for: "main.temp_min")
         self.maxTemperature = json.value(for: "main.temp_max")
         self.humidity = json.value(for: "main.humidity")
