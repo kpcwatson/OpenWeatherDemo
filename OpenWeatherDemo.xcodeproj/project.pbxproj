@@ -18,8 +18,6 @@
 		3F3E39431F0F08F70094D579 /* CityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E39421F0F08F70094D579 /* CityDetailsViewController.swift */; };
 		3F3E39461F0F09250094D579 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E39451F0F09250094D579 /* HelpViewController.swift */; };
 		3F3E39491F0F0BD20094D579 /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E39481F0F0BD20094D579 /* CityCell.swift */; };
-		3F3E394C1F0F0F180094D579 /* Cities.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E394A1F0F0F180094D579 /* Cities.storyboard */; };
-		3F3E394E1F0F0F340094D579 /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E394D1F0F0F340094D579 /* Help.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,8 +46,6 @@
 		3F3E39421F0F08F70094D579 /* CityDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityDetailsViewController.swift; sourceTree = "<group>"; };
 		3F3E39451F0F09250094D579 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		3F3E39481F0F0BD20094D579 /* CityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
-		3F3E394B1F0F0F180094D579 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Cities.storyboard; sourceTree = "<group>"; };
-		3F3E394D1F0F0F340094D579 /* Help.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,7 +178,6 @@
 		3F3E39411F0F065B0094D579 /* Cities */ = {
 			isa = PBXGroup;
 			children = (
-				3F3E394A1F0F0F180094D579 /* Cities.storyboard */,
 				3F3E393F1F0F06520094D579 /* CitiesViewController.swift */,
 				3F3E39481F0F0BD20094D579 /* CityCell.swift */,
 			);
@@ -200,7 +195,6 @@
 		3F3E39471F0F09280094D579 /* Help */ = {
 			isa = PBXGroup;
 			children = (
-				3F3E394D1F0F0F340094D579 /* Help.storyboard */,
 				3F3E39451F0F09250094D579 /* HelpViewController.swift */,
 			);
 			name = Help;
@@ -292,8 +286,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F3E391E1F0F00BC0094D579 /* LaunchScreen.storyboard in Resources */,
-				3F3E394C1F0F0F180094D579 /* Cities.storyboard in Resources */,
-				3F3E394E1F0F0F340094D579 /* Help.storyboard in Resources */,
 				3F3E391B1F0F00BC0094D579 /* Assets.xcassets in Resources */,
 				3F3E39191F0F00BC0094D579 /* Main.storyboard in Resources */,
 			);
@@ -356,14 +348,6 @@
 				3F3E391D1F0F00BC0094D579 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		3F3E394A1F0F0F180094D579 /* Cities.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3F3E394B1F0F0F180094D579 /* Base */,
-			);
-			name = Cities.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -539,6 +523,7 @@
 				3F3E392F1F0F00BC0094D579 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3F3E39301F0F00BC0094D579 /* Build configuration list for PBXNativeTarget "OpenWeatherDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -547,6 +532,7 @@
 				3F3E39321F0F00BC0094D579 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
