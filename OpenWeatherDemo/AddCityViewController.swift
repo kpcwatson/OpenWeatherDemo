@@ -74,35 +74,9 @@ class AddCityViewController: UIViewController {
     }
 }
 
-extension AddCityViewController: MKMapViewDelegate {
-    
-    func mapViewWillStartLocatingUser(_ mapView: MKMapView) {
-        Logger.debug("will start locating user")
-    }
-    
-    func mapViewDidStopLocatingUser(_ mapView: MKMapView) {
-        Logger.debug("did stop locating user")
-    }
-    
-    func mapView(_ mapView: MKMapView, didFailToLocateUserWithError error: Error) {
-        Logger.debug("failed to locate user \(error)")
-    }
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard !(annotation is MKUserLocation) else {
-            return nil
-        }
-        
-        Logger.debug("annotation: \(annotation)")
-        
-        return nil
-    }
-}
-
 extension AddCityViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        Logger.debug("did update location \(locations)")
         
         guard let location = locations.last else {
             return
