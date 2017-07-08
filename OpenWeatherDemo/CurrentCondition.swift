@@ -14,6 +14,14 @@ struct Temperatures {
     let max: Int?
 }
 
+extension Temperatures: Equatable {
+    static func ==(lhs: Temperatures, rhs: Temperatures) -> Bool {
+        return lhs.current == rhs.current
+            && lhs.min == rhs.min
+            && lhs.max == rhs.max
+    }
+}
+
 struct Wind {
     let speed: Double?
     let direction: Int?
@@ -50,6 +58,13 @@ struct Wind {
     }
 }
 
+extension Wind: Equatable {
+    static func ==(lhs: Wind, rhs: Wind) -> Bool {
+        return lhs.speed == rhs.speed
+            && lhs.direction == rhs.direction
+    }
+}
+
 struct CurrentCondition {
     let iconName: String
     let description: String
@@ -57,4 +72,15 @@ struct CurrentCondition {
     let city: String
     let humidity: Int?
     let wind: Wind
+}
+
+extension CurrentCondition: Equatable {
+    static func ==(lhs: CurrentCondition, rhs: CurrentCondition) -> Bool {
+        return lhs.iconName == rhs.iconName
+            && lhs.description == rhs.description
+            && lhs.temperature == rhs.temperature
+            && lhs.city == rhs.city
+            && lhs.humidity == rhs.humidity
+            && lhs.wind == rhs.wind
+    }
 }

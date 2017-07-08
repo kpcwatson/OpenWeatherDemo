@@ -46,13 +46,14 @@ class CitiesViewController: UIViewController {
         
         tableView.beginUpdates()
         var inserts = [IndexPath]()
-        weatherService.currentForecasts(inEach: sortedCities, onForecastUpdated: { [weak self] (city, condition, error) in
+        weatherService.currentConditions(forEach: sortedCities, onForecastUpdated: { [weak self] (city, condition, error) in
             guard error == nil else {
                 Logger.error("error fetching forecast: \(error!)")
                 return
             }
             
             guard let indexPath = self?.indexPath(for: city) else {
+                assertionFailure("unable to find an indexPath for a city")
                 self?.currentConditionsForCity[city] = condition
                 self?.tableView.reloadData()
                 return
@@ -154,7 +155,7 @@ extension CitiesViewController: UITableViewDataSource {
 extension CitiesViewController: AddCityViewControllerDelegate {
     
     func addCityViewController(_ viewController: AddCityViewController, didAdd city: String) {
-        Logger.debug("added \(city)")
+        Logger.debug("user added \(city)")
         store.add(city: city)
     }
 }

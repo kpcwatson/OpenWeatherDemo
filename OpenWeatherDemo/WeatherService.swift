@@ -17,28 +17,41 @@ enum WeatherServiceError: Error {
 }
 
 /// Facade that aggregates API clients.
-class WeatherService {
+class WeatherService: ExpirableRepositoryBackedService {
     
+    let contentRepository: CurrentConditionRepository
     let weatherApiClient: OpenWeatherApiClient
     
-    init(weatherApiClient: OpenWeatherApiClient = OpenWeatherApiClient()) {
+    init(contentRepository: CurrentConditionRepository = CurrentConditionRepository(),
+         weatherApiClient: OpenWeatherApiClient = OpenWeatherApiClient()) {
+        
+        self.contentRepository = contentRepository
         self.weatherApiClient = weatherApiClient
     }
     
-    // FIXME: remove duplicated code
-    
-    // FIXME: add content repository with expiry
-    
-    func currentForecasts(inEach cities: [String],
+    func currentConditions(forEach cities: [String],
                           onForecastUpdated forecastUpdated: @escaping CityForecastUpdateClosure,
                           onComplete complete: @escaping CompletionHandler) {
         
         let group = DispatchGroup()
         
+        if contentRepository.isContentExpired {
+            contentRepository.removeAll()
+        }
+        
         for city in cities {
             group.enter()
             
-            weatherApiClient.currentConditions(in: city) { (owCondition, error) in
+            guard !contentRepository.contains(city) else {
+                Logger.debug("from repo for \(city)")
+                let currentCondition = contentRepository.first(for: city)!
+                forecastUpdated(city, currentCondition, nil)
+                group.leave()
+                continue
+            }
+            
+            Logger.debug("updating from origin \(city)")
+            weatherApiClient.currentConditions(in: city) { [weak self] (owCondition, error) in
                 guard error == nil else {
                     forecastUpdated(city, nil, error!)
                     group.leave()
@@ -50,44 +63,12 @@ class WeatherService {
                     group.leave()
                     return
                 }
-
+                
                 let responseAdapter = OpenWeatherResponseAdapter()
                 let condition = responseAdapter.toCurrentCondition(owCondition, in: city)
+                
+                self?.contentRepository.add(condition)
                 forecastUpdated(city, condition, nil)
-                group.leave()
-            }
-        }
-        
-        group.notify(queue: DispatchQueue.main) {
-            complete()
-        }
-    }
-    
-    func currentForecasts(atEach coordinates: [Coordinate],
-                          onForecastUpdated forecastUpdated: @escaping CoordinateForecastUpdateClosure,
-                          onComplete complete: @escaping CompletionHandler) {
-        
-        let group = DispatchGroup()
-        
-        for coordinate in coordinates {
-            group.enter()
-            
-            weatherApiClient.currentConditions(at: coordinate) { (owCondition, error) in
-                guard error == nil else {
-                    forecastUpdated(coordinate, nil, error!)
-                    group.leave()
-                    return
-                }
-                
-                guard let owCondition = owCondition else {
-                    forecastUpdated(coordinate, nil, WeatherServiceError.OpenWeatherConditionIsNil)
-                    group.leave()
-                    return
-                }
-                
-                let responseAdapter = OpenWeatherResponseAdapter()
-                let condition = responseAdapter.toCurrentCondition(owCondition)
-                forecastUpdated(coordinate, condition, nil)
                 group.leave()
             }
         }

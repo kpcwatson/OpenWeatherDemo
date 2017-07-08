@@ -26,6 +26,7 @@ class CitiesPersistentStore {
     func add(city: String) -> [String] {
         var cities = allCities
         guard !cities.contains(city) else {
+            Logger.info("adding a city that already exists")
             return cities
         }
         
@@ -37,12 +38,11 @@ class CitiesPersistentStore {
     func remove(city: String) -> [String] {
         var cities = allCities
         guard let index = cities.index(of: city) else {
-            Logger.debug("city does not exist \(city)")
+            Logger.info("city does not exist \(city)")
             return cities
         }
         
         cities.remove(at: index)
-        Logger.debug("cities after removal: \(cities)")
         return updateDefaults(with: cities)
     }
     
