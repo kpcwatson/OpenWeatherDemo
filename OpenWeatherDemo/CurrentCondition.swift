@@ -35,19 +35,19 @@ struct Wind {
         
         switch direction {
         case 0..<23, 338..<360:
-            cardinality = "N"
+            cardinality = "North"
         case 23..<68:
             cardinality = "NE"
         case 68..<113:
-            cardinality = "E"
+            cardinality = "East"
         case 113..<158:
             cardinality = "SE"
         case 158..<203:
-            cardinality = "S"
+            cardinality = "South"
         case 203..<248:
             cardinality = "SW"
         case 248..<293:
-            cardinality = "W"
+            cardinality = "West"
         case 293..<338:
             cardinality = "NW"
         default:
