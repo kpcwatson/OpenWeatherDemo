@@ -41,6 +41,7 @@
 		3FB8AE4C1F0F515B0096AE31 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8AE4B1F0F515B0096AE31 /* RoundedButton.swift */; };
 		3FB8AE4E1F0F56620096AE31 /* AddCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8AE4D1F0F56620096AE31 /* AddCityViewController.swift */; };
 		3FD723011F10506F00680672 /* CurrentConditionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD723001F10506F00680672 /* CurrentConditionRepository.swift */; };
+		3FD723081F1074A000680672 /* Persistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD723071F1074A000680672 /* Persistable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		3FB8AE4B1F0F515B0096AE31 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		3FB8AE4D1F0F56620096AE31 /* AddCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCityViewController.swift; sourceTree = "<group>"; };
 		3FD723001F10506F00680672 /* CurrentConditionRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentConditionRepository.swift; sourceTree = "<group>"; };
+		3FD723071F1074A000680672 /* Persistable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,8 @@
 				3F3E39341F0F034E0094D579 /* Presentation */,
 				3F3E39351F0F03560094D579 /* Domain */,
 				3F3E39361F0F03600094D579 /* Network */,
+				3FD723021F10509300680672 /* Repositories */,
+				3FD722FF1F10350E00680672 /* Persistence */,
 				3FB8AE2E1F0F1D3F0096AE31 /* Framework */,
 				3F3E39131F0F00BC0094D579 /* AppDelegate.swift */,
 			);
@@ -206,11 +210,10 @@
 		3F3E39351F0F03560094D579 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				3FD723061F1073FF00680672 /* Persistence */,
 				3FB8AE3C1F0F20760096AE31 /* Config */,
 				3F3E393B1F0F03D20094D579 /* Services */,
 				3F3E39371F0F039A0094D579 /* Models */,
-				3FD722FF1F10350E00680672 /* Persistence */,
-				3FD723021F10509300680672 /* Repositories */,
 			);
 			name = Domain;
 			sourceTree = "<group>";
@@ -374,6 +377,14 @@
 			name = Weather;
 			sourceTree = "<group>";
 		};
+		3FD723061F1073FF00680672 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				3FD723071F1074A000680672 /* Persistable.swift */,
+			);
+			name = Persistence;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -483,6 +494,7 @@
 			files = (
 				3FB8AE341F0F1FBA0096AE31 /* URITemplate.swift in Sources */,
 				3FD723011F10506F00680672 /* CurrentConditionRepository.swift in Sources */,
+				3FD723081F1074A000680672 /* Persistable.swift in Sources */,
 				3FB8AE461F0F31040096AE31 /* BriefCityCondition.swift in Sources */,
 				3F018BBE1F1029D900720D60 /* CitiesPersistentStore.swift in Sources */,
 				3FB8AE3B1F0F204B0096AE31 /* Mappable.swift in Sources */,

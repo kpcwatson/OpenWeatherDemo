@@ -17,18 +17,19 @@ class CitiesViewController: UIViewController {
     
     var currentConditionsForCity = [String: CurrentCondition]()
     
-    fileprivate let store = CitiesPersistentStore()
+    fileprivate var store: AnyPersistable<String>!
     fileprivate var weatherService: WeatherService!
     
     fileprivate var selectedIndexPath: IndexPath?
     
     fileprivate var sortedCities: [String] {
-        return store.allCities.sorted()
+        return store.allObjects.sorted()
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        store = AnyPersistable<String>(CitiesPersistentStore())
         weatherService = WeatherService()
     }
     
@@ -145,7 +146,7 @@ extension CitiesViewController: UITableViewDataSource {
         if editingStyle == .delete,
             let city = city(for: indexPath) {
             
-            store.remove(city: city)
+            store.remove(city)
             currentConditionsForCity.removeValue(forKey: city)
             tableView.reloadData()
         }
@@ -156,6 +157,6 @@ extension CitiesViewController: AddCityViewControllerDelegate {
     
     func addCityViewController(_ viewController: AddCityViewController, didAdd city: String) {
         Logger.debug("user added \(city)")
-        store.add(city: city)
+        store.add(city)
     }
 }

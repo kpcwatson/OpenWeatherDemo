@@ -11,10 +11,12 @@ import Foundation
 
 let citiesKey = "CitiesKey"
 
-class CitiesPersistentStore {
+class CitiesPersistentStore: Persistable {
+    typealias Entity = String
+    
     private let defaults: UserDefaults
     
-    var allCities: [String] {
+    var allObjects: [String] {
         return defaults.object(forKey: citiesKey) as? [String] ?? []
     }
     
@@ -22,35 +24,32 @@ class CitiesPersistentStore {
         self.defaults = defaults
     }
     
-    @discardableResult
-    func add(city: String) -> [String] {
-        var cities = allCities
+    func add(_ city: Entity) {
+        var cities = allObjects
         guard !cities.contains(city) else {
             Logger.info("adding a city that already exists")
-            return cities
+            return
         }
         
         cities.append(city)
-        return updateDefaults(with: cities)
+        updateDefaults(with: cities)
     }
     
-    @discardableResult
-    func remove(city: String) -> [String] {
-        var cities = allCities
+    func remove(_ city: String) {
+        var cities = allObjects
         guard let index = cities.index(of: city) else {
             Logger.info("city does not exist \(city)")
-            return cities
+            return
         }
         
         cities.remove(at: index)
-        return updateDefaults(with: cities)
+        updateDefaults(with: cities)
     }
     
-    private func updateDefaults(with cities: [String]) -> [String] {
+    private func updateDefaults(with cities: [String]) {
         defaults.set(cities, forKey: citiesKey)
         if !defaults.synchronize() {
             Logger.error("unable to write user defaults")
         }
-        return cities
     }
 }
