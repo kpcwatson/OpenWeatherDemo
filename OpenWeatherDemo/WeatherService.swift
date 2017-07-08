@@ -43,14 +43,14 @@ class WeatherService: ExpirableRepositoryBackedService {
             group.enter()
             
             guard !contentRepository.contains(city) else {
-                Logger.debug("from repo for \(city)")
+                Logger.debug("\(city) content exists in repository")
                 let currentCondition = contentRepository.first(for: city)!
                 forecastUpdated(city, currentCondition, nil)
                 group.leave()
                 continue
             }
             
-            Logger.debug("updating from origin \(city)")
+            Logger.debug("fetching \(city) content from origin")
             weatherApiClient.currentConditions(in: city) { [weak self] (owCondition, error) in
                 guard error == nil else {
                     forecastUpdated(city, nil, error!)
